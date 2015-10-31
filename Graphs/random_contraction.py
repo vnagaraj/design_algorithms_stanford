@@ -90,45 +90,45 @@ class RandomContraction:
 class RandomContractionTest(unittest.TestCase):
 
     def test_pa1(self):
-        g = Graph("pa1.txt")
+        g = Graph("testfiles/pa1.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         print min_cut
         self.assertTrue(min_cut == 2)
 
     def test_pa2(self):
-        g = Graph("pa2.txt")
+        g = Graph("testfiles/pa2.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         print min_cut
         self.assertTrue(min_cut == 2)
 
     def test_pa3(self):
-        g = Graph("pa3.txt")
+        g = Graph("testfiles/pa3.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         self.assertTrue(min_cut == 1)
 
     def test_pa4(self):
-        g = Graph("pa4.txt")
+        g = Graph("testfiles/pa4.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         self.assertTrue(min_cut == 2)
 
     def test_pa5(self):
-        g = Graph("pa5.txt")
+        g = Graph("testfiles/pa5.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         self.assertTrue(min_cut == 3)
 
     def test_pa6(self):
-        g = Graph("pa6.txt")
+        g = Graph("testfiles/pa6.txt")
         random_contraction = RandomContraction(g)
         min_cut = random_contraction.run()
         self.assertTrue(min_cut == 9)
 
     def test_karger_min_cut(self):
-        g = Graph("kargerMinCut.txt")
+        g = Graph("testfiles/kargerMinCut.txt")
         random_contraction = RandomContraction(g)
         start_time = time.time()
         min_cut = random_contraction.run(100)

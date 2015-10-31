@@ -59,26 +59,26 @@ class StrongConnectedComponentTest(unittest.TestCase):
         return scc.max_size_list
 
     def test_scc1(self):
-        self.assertTrue(self.get_size_list("scc1.txt") == [3, 3, 3, 0, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc1.txt") == [3, 3, 3, 0, 0])
 
     def test_scc2(self):
-        self.assertTrue(self.get_size_list("scc2.txt") == [3, 3, 2, 0, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc2.txt") == [3, 3, 2, 0, 0])
 
     def test_scc3(self):
-        self.assertTrue(self.get_size_list("scc3.txt") == [3, 3, 1, 1, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc3.txt") == [3, 3, 1, 1, 0])
 
     def test_scc4(self):
-        self.assertTrue(self.get_size_list("scc4.txt") == [7, 1, 0, 0, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc4.txt") == [7, 1, 0, 0, 0])
 
     def test_scc5(self):
-        self.assertTrue(self.get_size_list("scc5.txt") == [6, 3, 2, 1, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc5.txt") == [6, 3, 2, 1, 0])
 
     def test_scc6(self):
-        self.assertTrue(self.get_size_list("scc6.txt") == [3, 2, 2, 1, 0])
+        self.assertTrue(self.get_size_list("testfiles/scc6.txt") == [3, 2, 2, 1, 0])
 
     def test_scc7(self):
         start_time = time.time()
-        size_list = self.get_size_list("SCC.txt")
+        size_list = self.get_size_list("testfiles/SCC.txt")
         print "Duration {}".format(time.time() - start_time)
         self.assertTrue(size_list == [434821, 968, 459, 313, 211])
 

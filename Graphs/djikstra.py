@@ -3,8 +3,9 @@ __author__ = 'VGN'
 import sys
 import time
 import unittest
+
 from graph import DirectedGraph
-from heap import MinHeap
+from Heaps.heap import MinHeap
 
 
 class Key:
@@ -123,64 +124,64 @@ class DjikstraTest(unittest.TestCase):
         return djikstra.dist_list
 
     def test_djikstra1(self):
-        self.assertTrue(self.get_dist_list("djikstra_1.txt")[1:] == [0, 3, 3, 5])
-        self.assertTrue(self.get_dist_list("djikstra_1.txt", 1, True)[1:] == [0, 3, 3, 5])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_1.txt")[1:] == [0, 3, 3, 5])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_1.txt", 1, True)[1:] == [0, 3, 3, 5])
 
     def test_djikstra2(self):
-        self.assertTrue(self.get_dist_list("djikstra_2.txt")[1:] == [0, 3, 4, 5])
-        self.assertTrue(self.get_dist_list("djikstra_2.txt", 1, True)[1:] == [0, 3, 4, 5])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_2.txt")[1:] == [0, 3, 4, 5])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_2.txt", 1, True)[1:] == [0, 3, 4, 5])
 
     def test_djikstra3(self):
-        dist_list = self.get_dist_list("djikstra_3.txt")
+        dist_list = self.get_dist_list("testfiles/djikstra_3.txt")
         self.assertTrue(dist_list[4] == 2)
-        dist_list = self.get_dist_list("djikstra_3.txt", 1, True)
+        dist_list = self.get_dist_list("testfiles/djikstra_3.txt", 1, True)
         self.assertTrue(dist_list[4] == 2)
 
     def test_djikstra4(self):
-        dist_list = self.get_dist_list("djikstra_4.txt")
+        dist_list = self.get_dist_list("testfiles/djikstra_4.txt")
         self.assertTrue(dist_list[7] == 5)
-        dist_list = self.get_dist_list("djikstra_4.txt", 1, True)
+        dist_list = self.get_dist_list("testfiles/djikstra_4.txt", 1, True)
         self.assertTrue(dist_list[7] == 5)
 
     def test_djikstra5(self):
-        dist_list = self.get_dist_list("djikstra_5.txt", 13)
+        dist_list = self.get_dist_list("testfiles/djikstra_5.txt", 13)
         self.assertTrue(dist_list[5] == 26)
-        dist_list = self.get_dist_list("djikstra_5.txt", 13, True)
+        dist_list = self.get_dist_list("testfiles/djikstra_5.txt", 13, True)
         self.assertTrue(dist_list[5] == 26)
 
     def test_djikstra6(self):
-        dist_list = self.get_dist_list("djikstra_6.txt")
+        dist_list = self.get_dist_list("testfiles/djikstra_6.txt")
         output_list = [dist_list[7], dist_list[37], dist_list[59], dist_list[82], dist_list[99], dist_list[115],
                        dist_list[133], dist_list[165], dist_list[188], dist_list[197]]
         self.assertTrue(output_list == [4758, 4132, 3900, 1827, 3700, 3532, 3299, 3062, 1501, 4255])
-        dist_list = self.get_dist_list("djikstra_6.txt", 1, True)
+        dist_list = self.get_dist_list("testfiles/djikstra_6.txt", 1, True)
         output_list = [dist_list[7], dist_list[37], dist_list[59], dist_list[82], dist_list[99], dist_list[115],
                        dist_list[133], dist_list[165], dist_list[188], dist_list[197]]
         self.assertTrue(output_list == [4758, 4132, 3900, 1827, 3700, 3532, 3299, 3062, 1501, 4255])
 
     def test_djikstra7(self):
-        self.assertTrue(self.get_dist_list("djikstra_7.txt")[1:] == [0, 1, 3, 7])
-        self.assertTrue(self.get_dist_list("djikstra_7.txt", 1, True)[1:] == [0, 1, 3, 7])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_7.txt")[1:] == [0, 1, 3, 7])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_7.txt", 1, True)[1:] == [0, 1, 3, 7])
 
     def test_djikstra8(self):
-        self.assertTrue(self.get_dist_list("djikstra_8.txt")[1:] == [0, 1, 2, 1])
-        self.assertTrue(self.get_dist_list("djikstra_8.txt", 1, True)[1:] == [0, 1, 2, 1])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_8.txt")[1:] == [0, 1, 2, 1])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_8.txt", 1, True)[1:] == [0, 1, 2, 1])
 
     def test_djikstra9(self):
-        self.assertTrue(self.get_dist_list("djikstra_9.txt")[1:] == [0, 1, 3, 6])
-        self.assertTrue(self.get_dist_list("djikstra_9.txt", 1, True)[1:] == [0, 1, 3, 6])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_9.txt")[1:] == [0, 1, 3, 6])
+        self.assertTrue(self.get_dist_list("testfiles/djikstra_9.txt", 1, True)[1:] == [0, 1, 3, 6])
 
     def test_djikstra(self):
         #Homework assignment
         start_time = time.time()
-        dist_list = self.get_dist_list("djikstra.txt")
+        dist_list = self.get_dist_list("testfiles/djikstra.txt")
         end_time = time.time()
         print "Duration {}".format(end_time - start_time)
         output_list = [dist_list[7], dist_list[37], dist_list[59], dist_list[82], dist_list[99], dist_list[115],
                        dist_list[133], dist_list[165], dist_list[188], dist_list[197]]
         self.assertTrue(output_list == [2599, 2610, 2947, 2052, 2367, 2399, 2029, 2442, 2505, 3068])
         start_time = time.time()
-        dist_list = self.get_dist_list("djikstra.txt", 1, True)
+        dist_list = self.get_dist_list("testfiles/djikstra.txt", 1, True)
         end_time = time.time()
         print "Duration {}".format(end_time - start_time)
         output_list = [dist_list[7], dist_list[37], dist_list[59], dist_list[82], dist_list[99], dist_list[115],
