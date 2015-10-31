@@ -133,6 +133,110 @@ class MinHeap:
                     # heap property satisfied can return from while loop
                     return
 
+    @property
+    def size(self):
+        return self._size
+
+
+class MaxHeap:
+    """ class to capture the maxheap data structure
+    """
+
+    def __init__(self):
+        self._heap_list = list()
+        self._heap_list.append(-1) # index 0 is not used , root at index 1
+        self._size = 0
+
+    def insert(self, item):
+        self._size += 1
+        # insert item at end of the list
+        self._heap_list.append(item)
+        self._bubble_up(self._size)
+
+    def peek_max(self):
+        self._check_for_empty_heap()
+        return self._heap_list[1]
+
+    def extract_max(self):
+        self._check_for_empty_heap()
+        max = self._heap_list[1]
+        #swap root with last element
+        self._heap_list[1] = self._heap_list[self._size]
+        self._heap_list.pop()
+        self._size -= 1
+        self._bubble_down(1) # bubble down from root
+        return max
+
+    def is_empty(self):
+        return self._size == 0
+
+    def get_element_from_index(self, index):
+        if index >=1 and index <= self._size:
+            return self._heap_list[index]
+        raise Exception("invalid index")
+
+    def _check_for_empty_heap(self):
+        if self._size == 0:
+            raise Exception("Cannot extract min from empty heap")
+
+    def _bubble_up(self, value):
+        """internal method invoked during insert to bubble up the element from the specified index upto root
+        until heap property satisfied"""
+        # check for violation of heap property
+        if self._size <= 1 or value > self._size:
+            return
+        while value != 1: # bubble up until the root
+            element = self._heap_list[value]
+            parent = self._heap_list[value/2]
+            if element > parent:
+                #swap the element with its parent
+                self._heap_list[value] = parent
+                self._heap_list[value/2] = element
+            value = value/2
+
+    def _bubble_down(self, value):
+        """internal method invoked during extract_max to bubble down element from specfied index upto leaf
+            until heap property satisfied"""
+        if self._size <= 1 or value > self._size:
+            return
+        while 2 * value <= self._size: # check to make sure element is not leaf
+            element = self._heap_list[value]
+            left_child = self._heap_list[2*value]
+            if 2 * value + 1 > self._size:
+                right_child = None
+            else:
+                right_child = self._heap_list[2*value+1]
+            if right_child is not None:
+                if left_child >= right_child :
+                    if element < left_child:
+                    #swap element with left child
+                        self._heap_list[value] = left_child
+                        self._heap_list[2*value] = element
+                        value = 2*value
+                    else:
+                        return
+                else: #right_child < left_child
+                    if element < right_child:
+                    #swap element with right child
+                        self._heap_list[value] = right_child
+                        self._heap_list[2*value+1] = element
+                        value = 2*value+1
+                    else:
+                        return
+            else: #right_child is None:
+                if element < left_child:
+                #swap element with left child
+                    self._heap_list[value] = left_child
+                    self._heap_list[2*value] = element
+                    value = 2*value
+                else:
+                    # heap property satisfied can return from while loop
+                    return
+
+    @property
+    def size(self):
+        return self._size
+
 
 class HeapTest(unittest.TestCase):
     """Test class for verifying heap data structure"""
@@ -149,9 +253,21 @@ class HeapTest(unittest.TestCase):
             min_heap.insert(random_no)
         for i in range(lower_bound, upper_bound):
             min_heap_list.append(min_heap.extract_min())
-            #print "Min heap list {}".format(min_heap._heap_list)
-            #print "Min heap dict {}".format(min_heap._mapping_dict)
         self.assertTrue(sorted(random_list) == min_heap_list)
+
+    def test_maxheap(self):
+        lower_bound = 0
+        upper_bound = 10
+        max_heap = MaxHeap()
+        random_list = list()
+        max_heap_list = list()
+        for i in range(lower_bound, upper_bound):
+            random_no = random.randint(1,100)
+            random_list.append(random_no)
+            max_heap.insert(random_no)
+        for i in range(lower_bound, upper_bound):
+            max_heap_list.append(max_heap.extract_max())
+        self.assertTrue(sorted(random_list, reverse=True) == max_heap_list)
 
 
 if __name__ == '__main__':
